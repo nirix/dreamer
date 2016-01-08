@@ -141,7 +141,75 @@ function e($string)
 }
 
 // -----------------------------------------------------------------------------
+// CSRF
+
+/**
+ * Get CSRF token form field.
+ *
+ * @return string
+ */
+function csrfField()
+{
+    return '<input type="hidden" name="csrf_token" value="' . csrfToken() . '">';
+}
+
+/**
+ * Generate a CSRF token for this request, but only generate it once in case there are
+ * multiple forms on the one page.
+ *
+ * @return string
+ */
+function csrfToken()
+{
+    static $token;
+
+    if (!$token) {
+        $_SESSION['CSRF_TOKEN'] = $token = randomHash();
+    }
+
+    return $token;
+}
+
+/**
+ * Get the CSRF token from the session.
+ *
+ * @return string|boolean
+ */
+function getCsrfToken()
+{
+    if (isset($_SESSION['CSRF_TOKEN'])) {
+        return $_SESSION['CSRF_TOKEN'];
+    }
+
+    return false;
+}
+
+// -----------------------------------------------------------------------------
+// Model/Validation Errors
+
+function errorMessageFor(Model $model, $field)
+{
+    if (!$model->hasError($field)) {
+        return;
+    }
+
+    $error = $model->getError($field);
+    $error['field'] = t($error['field']);
+    return t('errors.validation.' . $error['error'], $error);
+}
+
+// -----------------------------------------------------------------------------
 // Misc.
+
+/**
+ * Generate a random hash.
+ *
+ * @return string
+ */
+function randomHash()
+{
+    return bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+}
 
 /**
  * Somewhat shortcut kind of way for `($cond ? $true : $false)`.

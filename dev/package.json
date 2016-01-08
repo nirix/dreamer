@@ -1,0 +1,16 @@
+{
+  "name": "dreamer-dev-tools",
+  "description": "Development tools for Dreamer.",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.6",
+    "font-awesome": "^4.5.0",
+    "gulp": "^3.9.0",
+    "gulp-coffee": "^2.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-sass": "^2.1.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-watch": "^4.3.5",
+    "jquery": "^2.1.4"
+  }
+}

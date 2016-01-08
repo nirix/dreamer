@@ -1,0 +1,35 @@
+@import 'custom_bootstrap';
+
+$fa-font-path: '../fonts';
+
+@import '../node_modules/font-awesome/scss/font-awesome.scss';
+
+/*!
+ * Dreamer
+ * Copyright (c) 2010-2016 Jack P.
+ *
+ * Licensed under the BSD 3-clause license.
+ */
+
+#wrapper {
+  background: $wrapper-bg-colour;
+  border-radius: $main-border-radius;
+  box-shadow: $wrapper-box-shadow;
+}
+
+main {
+    padding: 10px;
+    background: #fff;
+    border-radius: $main-border-radius;
+}
+
+.page-header {
+  margin-top: 0;
+}
+
+#footer {
+    color: $body-colour;
+    padding: 5px 10px;
+}
+
+@import 'dreamer/header.scss';

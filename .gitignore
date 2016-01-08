@@ -1,0 +1,11 @@
+# Dreamer
+/assets
+/config/config.php
+/dev/node_modules
+
+# Composer
+/vendor
+
+# Misc.
+.DS_Store
+.phpintel

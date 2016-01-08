@@ -1,0 +1,10 @@
+
+.navbar-default {
+  margin-top: 40px;
+
+  .navbar-nav.navbar-right li:last-child {
+    a {
+      border-top-right-radius: $border-radius;
+    }
+  }
+}

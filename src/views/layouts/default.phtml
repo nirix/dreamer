@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title><?=implode(' / ', [])?></title>
+
+        <link rel="stylesheet" href="<?=baseUrl('/assets/css/dreamer.css')?>">
+        <script src="<?=baseUrl('/assets/js/js.js')?>"></script>
+        <!-- <script src="<?=baseUrl('/assets/js/dreamer.js')?>"></script> -->
+    </head>
+    <body>
+        <div class="container">
+            <div id="wrapper">
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      <a href="<?=baseUrl()?>" class="navbar-brand"><?=setting('title')?></a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                        <?php foreach (getPages() as $page) : ?>
+                            <li class="<?=iif(Request::matches("/{$page['slug']}"), 'active')?>"><a href="<?=baseUrl($page['slug'])?>"><?=$page['name']?></a></li>
+                        <?php endforeach ?>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <span class="fa fa-cog"></span> <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Admin</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <?=$content?>
+                <footer id="footer">
+                    &copy; <?=date("Y")?> Dreamer
+                </footer>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,169 @@
+<?php
+/*!
+ * Dreamer
+ * Copyright (c) 2010-2016 Nirix
+ *
+ * Licensed under the BSD 3-Clause license.
+ */
+
+use Unf\View;
+
+// -----------------------------------------------------------------------------
+// Settings
+
+/**
+ * Get the specified setting value.
+ *
+ * @param string $setting
+ *
+ * @return string
+ */
+function setting($setting)
+{
+    static $settings;
+
+    if (!$settings) {
+        $query = db()->query('SELECT setting, value FROM '.PREFIX.'settings');
+        foreach ($query->fetchAll() as $row) {
+            $settings[$row['setting']] = $row['value'];
+        }
+    }
+
+    return $settings[$setting];
+}
+
+// -----------------------------------------------------------------------------
+// Pages
+
+/**
+ * Get all pages.
+ *
+ * @return array[]
+ */
+function getPages()
+{
+    return db()->query('SELECT * FROM '.PREFIX.'pages ORDER BY name ASC')->fetchAll();
+}
+
+// -----------------------------------------------------------------------------
+// Database
+
+/**
+ * Get the database connection object.
+ *
+ * @return PDO
+ */
+function db()
+{
+    return $GLOBALS['db'];
+}
+
+// -----------------------------------------------------------------------------
+// URLs
+
+/**
+ * @param string $append
+ *
+ * @return string
+ */
+function baseUrl($append = null)
+{
+    return Request::$basePath . rtrim('/' . ltrim($append, '/'), '/');
+}
+
+/**
+ * Redirect to the specified path.
+ *
+ * @param string $path
+ */
+function redirect($path)
+{
+    header('Location: ' . baseUrl($path));
+    exit;
+}
+
+// -----------------------------------------------------------------------------
+// Views
+
+/**
+ * Render the 404 page.
+ *
+ * @return string
+ */
+function show404()
+{
+    return render('errors/404.phtml');
+}
+
+/**
+ * Render a view with the layout.
+ *
+ * A different layout can be specified by passing `'_layout' => 'my_layout.phtml`
+ * as a local variable.
+ *
+ * @param string $view   view file
+ * @param arrray $locals local variables
+ *
+ * @return string
+ */
+function render($view, array $locals = [])
+{
+    $locals = $locals + [
+        '_layout' => 'default.phtml'
+    ];
+
+    return view("layouts/{$locals['_layout']}", ['content' => view($view, $locals)]);
+}
+
+/**
+ * Render a view.
+ *
+ * @param string $view   view file
+ * @param arrray $locals local variables
+ *
+ * @return string
+ */
+function view($view, array $locals = [])
+{
+    return View::render($view, $locals);
+}
+
+/**
+ * Escape HTML.
+ *
+ * @param string $string
+ *
+ * @return string
+ */
+function e($string)
+{
+    return htmlspecialchars($string);
+}
+
+// -----------------------------------------------------------------------------
+// Misc.
+
+/**
+ * Somewhat shortcut kind of way for `($cond ? $true : $false)`.
+ *
+ * @param boolean $cond
+ * @param mixed   $true
+ * @param mixed   $false
+ *
+ * @return mixed
+ */
+function iif($cond, $true, $false = null)
+{
+    return $cond ? $true : $false;
+}
+
+/**
+ * Dump a die.
+ *
+ * @see https://secure.php.net/var_dump
+ */
+function dd()
+{
+    call_user_func_array('var_dump', func_get_args());
+    exit;
+}

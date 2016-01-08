@@ -112,7 +112,13 @@ function render($view, array $locals = [])
         '_layout' => 'default.phtml'
     ];
 
-    return view("layouts/{$locals['_layout']}", ['content' => view($view, $locals)]);
+    $view = view($view, $locals);
+
+    if ($locals['_layout']) {
+        return view("layouts/{$locals['_layout']}", ['content' => $view]);
+    } else {
+        return $view;
+    }
 }
 
 /**

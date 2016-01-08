@@ -38,6 +38,8 @@ class Kernel extends AppKernel
 
     public function __construct()
     {
+        session_start();
+
         parent::__construct();
 
         $_ENV['env'] = $this->config['environment'];
@@ -67,6 +69,13 @@ class Kernel extends AppKernel
 
     public function run()
     {
+        // Check CSRF token
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($_POST['csrf_token'] !== $_SESSION['CSRF_TOKEN']) {
+                return show404();
+            }
+        }
+
         try {
             return parent::run();
         } catch (NoRouteFoundException $r) {

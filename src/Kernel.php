@@ -12,6 +12,7 @@ use PDO;
 use Unf\AppKernel;
 use Unf\Router;
 use Unf\NoRouteFoundException;
+use Dreamer\Translations\EnglishAu;
 
 /**
  * Dreamer core.
@@ -38,6 +39,8 @@ class Kernel extends AppKernel
 
     public function __construct()
     {
+        global $language;
+
         session_start();
 
         parent::__construct();
@@ -58,6 +61,8 @@ class Kernel extends AppKernel
         $GLOBALS['db']->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         define('PREFIX', $dbConfig['prefix']);
         unset($dbConfig);
+
+        $language = new EnglishAu;
 
         require __DIR__ . '/common.php';
     }

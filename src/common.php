@@ -35,6 +35,23 @@ function setting($setting)
 }
 
 // -----------------------------------------------------------------------------
+// Translation
+
+/**
+ * Translate the string.
+ *
+ * @param string $string string or string key
+ * @param array  $args   arguments for the string
+ *
+ * @return string
+ */
+function t($string, array $args = [])
+{
+    global $language;
+    return $language->translate($string, $args);
+}
+
+// -----------------------------------------------------------------------------
 // Users
 
 /**

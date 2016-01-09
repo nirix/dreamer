@@ -6,7 +6,7 @@
 // -----------------------------------------------------------------------------
 // Custom variables
 
-
+$body-bg: #eee;
 
 // -----------------------------------------------------------------------------
 
@@ -59,3 +59,26 @@
 @import "admin/login";
 @import "admin/register";
 @import "admin/sidebar";
+
+.navbar-inverse {
+  min-height: 36px;
+
+  .navbar-brand {
+    padding: 8px 10px;
+    line-height: 1;
+    height: 0;
+  }
+
+  .navbar-nav {
+    > li > a {
+      padding: 8px 10px;
+    }
+  }
+}
+
+main {
+  .page-header {
+    margin-top: 0;
+    border-bottom-color: darken(#eee, 30%);
+  }
+}

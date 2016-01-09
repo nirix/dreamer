@@ -219,6 +219,24 @@ function e($string)
     return htmlspecialchars($string);
 }
 
+/**
+ * Convert to Markdown.
+ *
+ * @param string $string
+ *
+ * @return string
+ */
+function markdown($string)
+{
+    static $parsedown;
+
+    if (!$parsedown) {
+        $parsedown = new ParsedownExtra;
+    }
+
+    return $parsedown->text($string);
+}
+
 // -----------------------------------------------------------------------------
 // CSRF
 

@@ -3,6 +3,6 @@
         <h2><a href="<?=baseUrl('/posts/' . $post['slug'])?>"><?=$post['title']?></a></h2>
     </header>
     <div class="article-content">
-        <?=$post['content']?>
+        <?=markdown($post['content'])?>
     </div>
 </article>

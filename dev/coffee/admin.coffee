@@ -19,9 +19,9 @@ jQuery(document).ready ->
 
             doc.on 'blur', target, ->
                 slug = $(this).val()
-                    .trim()
                     .toLowerCase()
                     .replace(/[^\w ]+/g, '')
+                    .trim()
                     .replace(/ +/g, '-')
 
                 slugField.val(slug)

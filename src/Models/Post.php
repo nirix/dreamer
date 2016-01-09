@@ -11,7 +11,8 @@ namespace Dreamer\Models;
 class Post extends Model
 {
     protected $validations = [
-        'name'         => ['required'],
+        'title'        => ['required'],
+        'slug'         => ['required'],
         'content'      => ['required'],
         'user_id'      => ['required'],
         'published_at' => ['required']

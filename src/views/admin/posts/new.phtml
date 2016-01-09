@@ -1,23 +1,52 @@
 <main class="new-post container-fluid">
     <h1 class="page-header"><?=t('new_post')?></h1>
 
-    <form action="">
+    <form action="<?=baseUrl('/admin/posts/new')?>" method="post">
+        <?=csrfField()?>
         <div class="row">
             <div class="col-md-9">
-                <div class="form-group">
-                    <label for="title" class="control-label"><?=t('title')?></label>
-                    <input type="text" name="title" id="title" class="form-control">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group <?=iif($post->hasError('title'), 'has-error')?>">
+                            <label for="title" class="control-label"><?=t('title')?></label>
+                            <input type="text" name="title" id="title" class="form-control" value="<?=$post['title']?>">
+                            <?php if ($post->hasError('title')) : ?>
+                                <div class="help-block"><?=errorMessageFor($post, 'title')?></div>
+                            <?php endif ?>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group <?=iif($post->hasError('slug'), 'has-error')?>">
+                            <label for="slug" class="control-label"><?=t('slug')?></label>
+                            <input type="text" name="slug" id="slug" class="form-control" data-type="slug" data-slug-from="#title" value="<?=$post['slug']?>">
+                            <?php if ($post->hasError('slug')) : ?>
+                                <div class="help-block"><?=errorMessageFor($post, 'slug')?></div>
+                            <?php endif ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group <?=iif($post->hasError('content'), 'has-error')?>">
+                    <label for="content" class="control-label"><?=t('content')?></label>
+                    <textarea name="content" id="content" class="form-control"><?=$post['content']?></textarea>
+                    <?php if ($post->hasError('content')) : ?>
+                        <div class="help-block"><?=errorMessageFor($post, 'content')?></div>
+                    <?php endif ?>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group <?=iif($post->hasError('published_at'), 'has-error')?>">
+                    <label for="published_at" class="control-label"><?=t('publish_date')?></label>
+                    <input type="text" name="published_at" class="form-control datetime-picker" value="<?=$post['published_at']->format('m/d/Y H:i A')?>">
+                    <?php if ($post->hasError('published_at')) : ?>
+                        <div class="help-block"><?=errorMessageFor($post, 'published_at')?></div>
+                    <?php endif ?>
                 </div>
 
                 <div class="form-group">
-                    <label for="content" class="control-label"><?=t('content')?></label>
-                    <textarea name="content" id="content" class="form-control"></textarea>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="published_at" class="control-label"><?=t('publish_date')?></label>
-                    <input type="text" name="published_at[date]" class="form-control date-picker">
+                    <button type="submit" class="btn btn-block btn-primary"><?=t('create_post')?></button>
                 </div>
             </div>
         </div>

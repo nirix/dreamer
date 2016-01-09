@@ -8,6 +8,8 @@
 
 namespace Dreamer\Models;
 
+use DateTime;
+
 class Post extends Model
 {
     protected $validations = [
@@ -17,4 +19,14 @@ class Post extends Model
         'user_id'      => ['required'],
         'published_at' => ['required']
     ];
+
+
+    public function __construct(array $properties = [])
+    {
+        parent::__construct($properties);
+
+        if (isset($properties['published_at']) && !($properties['published_at'] instanceof DateTime)) {
+            $this['published_at'] = new DateTime($properties['published_at']);
+        }
+    }
 }

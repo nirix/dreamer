@@ -36,10 +36,14 @@ class EnglishAu extends Translation
         // Posts
         'posts'        => 'Posts',
         'new_post'     => 'New Post',
+        'edit_post'    => 'Edit Post',
         'title'        => 'Title',
+        'slug'         => 'Slug',
         'content'      => 'Content',
         'published_at' => 'Published at',
         'publish_date' => 'Publish Date',
+        'create_post'  => 'Create Post',
+        'save_post'    => 'Save Post',
 
         // Pages
         'pages'    => 'Pages',

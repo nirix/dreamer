@@ -58,4 +58,55 @@ if (!Request::seg(2)) {
         'action' => 'new',
         'post' => $post
     ]);
+} elseif (Request::seg(3) == 'edit') {
+    $query = db()->prepare('SELECT * FROM '.PREFIX.'posts WHERE id = ? LIMIT 1');
+    $query->bindValue(1, Request::$properties['id']);
+    $query->execute();
+
+    $post = $query->fetch();
+
+    if (!$post) {
+        return show404();
+    }
+
+    $post = new Post($post);
+
+    if (Request::$method == 'POST') {
+        $post->set([
+            'title'        => Request::$post['title'],
+            'slug'         => Request::$post['slug'],
+            'content'      => Request::$post['content'],
+            'published_at' => new DateTime(Request::$post['published_at'])
+        ]);
+
+        if ($post->validate()) {
+            db()->beginTransaction();
+
+            $query = db()->prepare('
+                UPDATE '.PREFIX.'posts
+                SET title = :title,
+                    slug = :slug,
+                    content = :content,
+                    updated_at = NOW(),
+                    published_at = :published_at
+                WHERE id = :id
+                LIMIT 1
+            ');
+
+            $query->bindValue(':id', $post['id'], PDO::PARAM_INT);
+            $query->bindValue(':title', $post['title']);
+            $query->bindValue(':slug', $post['slug']);
+            $query->bindValue(':content', $post['content']);
+            $query->bindValue(':published_at', $post['published_at']->format('Y-m-d H:i:s'));
+
+            $query->execute();
+
+            db()->commit();
+        }
+    }
+
+    return renderAdmin('admin/posts/form.phtml', [
+        'action' => 'edit',
+        'post' => $post
+    ]);
 }

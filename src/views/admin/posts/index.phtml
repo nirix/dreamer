@@ -11,7 +11,7 @@
         <tbody>
         <?php foreach ($posts as $post) : ?>
             <tr>
-                <td><a href="<?=baseUrl('/admin/posts/' . $post['id'])?>"><?=$post['title']?></a></td>
+                <td><a href="<?=baseUrl("/admin/posts/{$post['id']}/edit")?>"><?=$post['title']?></a></td>
                 <td><?=$post['user_name']?></td>
                 <td><?=$post['published_at']?></td>
                 <td></td>

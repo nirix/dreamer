@@ -11,6 +11,7 @@ namespace Dreamer;
 use PDO;
 use Unf\AppKernel;
 use Unf\Router;
+use Unf\Request;
 use Unf\NoRouteFoundException;
 use Dreamer\Translations\EnglishAu;
 
@@ -72,12 +73,23 @@ class Kernel extends AppKernel
         Router::$routes = require __DIR__ . '/routes.php';
     }
 
+    /**
+     * Override the `run()` method to check CSRF and permissions.
+     */
     public function run()
     {
+        Request::init();
+
         // Check CSRF token
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_POST['csrf_token'] !== $_SESSION['CSRF_TOKEN']) {
                 return show404();
+            }
+        }
+
+        if (Request::seg(0) == 'admin') {
+            if (!currentUser()) {
+                return showLogin();
             }
         }
 

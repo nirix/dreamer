@@ -169,6 +169,16 @@ function render($view, array $locals = [])
 }
 
 /**
+ * Render view with Admin layout.
+ *
+ * @see render()
+ */
+function renderAdmin($view, array $locals = [])
+{
+    return render($view, ['_layout' => 'admin.phtml'] + $locals);
+}
+
+/**
  * Render a view.
  *
  * @param string $view   view file

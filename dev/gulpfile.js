@@ -18,6 +18,7 @@ var beSassy = function() {
     console.log('Being Sassy');
 
     gulp.src([
+        './scss/common.scss',
         './scss/dreamer.scss',
         './scss/admin.scss'
     ])

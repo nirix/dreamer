@@ -83,20 +83,22 @@ class Kernel extends AppKernel
         // Check CSRF token
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_POST['csrf_token'] !== $_SESSION['CSRF_TOKEN']) {
-                return show404();
+                echo show404();
+                exit;
             }
         }
 
         if (Request::seg(0) == 'admin') {
             if (!currentUser()) {
-                return showLogin();
+                echo showLogin();
+                exit;
             }
         }
 
         try {
             return parent::run();
         } catch (NoRouteFoundException $r) {
-            return show404();
+            echo show404();
         }
     }
 }

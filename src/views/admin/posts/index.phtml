@@ -5,6 +5,7 @@
         <thead>
             <th><?=t('title')?></th>
             <th><?=t('author')?></th>
+            <th><?=t('is_published')?></th>
             <th><?=t('published_at')?></th>
             <th></th>
         </thead>
@@ -13,6 +14,7 @@
             <tr>
                 <td><a href="<?=baseUrl("/admin/posts/{$post['id']}/edit")?>"><?=$post['title']?></a></td>
                 <td><?=$post['user_name']?></td>
+                <td><span class="fa fa-<?=$post['is_published'] ? 'check' : 'times'?>"></span></td>
                 <td><?=$post['published_at']?></td>
                 <td></td>
             </tr>

@@ -40,10 +40,12 @@ class EnglishAu extends Translation
         'title'        => 'Title',
         'slug'         => 'Slug',
         'content'      => 'Content',
+        'is_published' => 'Is published',
         'published_at' => 'Published at',
         'publish_date' => 'Publish Date',
         'create_post'  => 'Create Post',
         'save_post'    => 'Save Post',
+        'author'       => 'Author',
 
         // Pages
         'pages'    => 'Pages',

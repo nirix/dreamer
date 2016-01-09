@@ -152,10 +152,30 @@ function redirect($path)
 function show404()
 {
     if (Request::seg(0) == 'admin') {
-        return render('admin/404.phtml');
+        return render('admin/40x.phtml', [
+            '_layout'   => 'admin.phtml',
+            'errorCode' => 404
+        ]);
     }
 
     return render('errors/404.phtml');
+}
+
+/**
+ * Render the 403 page.
+ *
+ * @return string
+ */
+function show403()
+{
+    if (Request::seg(0) == 'admin') {
+        return render('admin/40x.phtml', [
+            '_layout'   => 'admin.phtml',
+            'errorCode' => 403
+        ]);
+    }
+
+    return render('errors/403.phtml');
 }
 
 /**

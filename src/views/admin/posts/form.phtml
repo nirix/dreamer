@@ -37,6 +37,13 @@
             </div>
 
             <div class="col-md-3">
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="is_published" value="1" <?=iif($post['is_published'], 'checked')?>>
+                        <?=t('is_published')?>
+                    </label>
+                </div>
+
                 <div class="form-group <?=iif($post->hasError('published_at'), 'has-error')?>">
                     <label for="published_at" class="control-label"><?=t('publish_date')?></label>
                     <input type="text" name="published_at" class="form-control datetime-picker" value="<?=$post['published_at']->format(PUBLISHED_AT_FORMAT)?>">

@@ -19,6 +19,7 @@ if (!Request::seg(2)) {
     return renderAdmin('admin/posts/index.phtml', ['posts' => $posts]);
 } elseif (Request::seg(2) == 'new') {
     $post = new Post([
+        'is_published' => true,
         'published_at' => new DateTime()
     ]);
 
@@ -27,6 +28,7 @@ if (!Request::seg(2)) {
             'title'        => Request::$post['title'],
             'slug'         => Request::$post['slug'],
             'content'      => Request::$post['content'],
+            'is_published' => Request::$post->get('is_published', false),
             'user_id'      => currentUser()->get('id'),
             'published_at' => DateTime::createFromFormat(PUBLISHED_AT_FORMAT, Request::$post['published_at'])
         ]);
@@ -36,13 +38,14 @@ if (!Request::seg(2)) {
 
             $query = db()->prepare('
                 INSERT INTO '.PREFIX.'posts
-                (title, slug, content, user_id, created_at, published_at)
-                VALUES(:title, :slug, :content, :user_id, NOW(), :published_at)
+                (title, slug, content, user_id, is_published, created_at, published_at)
+                VALUES(:title, :slug, :content, :user_id, :is_published, NOW(), :published_at)
             ');
 
             $query->bindValue(':title', $post['title']);
             $query->bindValue(':slug', $post['slug']);
             $query->bindValue(':content', $post['content']);
+            $query->bindValue(':is_published', $post['is_published']);
             $query->bindValue(':user_id', $post['user_id'], PDO::PARAM_INT);
             $query->bindValue(':published_at', $post['published_at']->format(DATETIME_DB_FORMAT));
 
@@ -88,6 +91,7 @@ if (!Request::seg(2)) {
                 SET title = :title,
                     slug = :slug,
                     content = :content,
+                    is_published = :is_published,
                     updated_at = NOW(),
                     published_at = :published_at
                 WHERE id = :id

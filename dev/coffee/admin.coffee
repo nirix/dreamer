@@ -4,6 +4,7 @@ jQuery(document).ready ->
         doc = $ document
 
         $(this).datetimepicker
+            format: 'DD/MM/YYYY hh:mm A'
             icons:
                 time: "fa fa-clock-o",
                 date: "fa fa-calendar",

@@ -11,6 +11,19 @@ use Dreamer\Models\Model;
 use Dreamer\Models\User;
 
 // -----------------------------------------------------------------------------
+// Constants
+
+/**
+ * Format for `datetime` database fields.
+ */
+const DATETIME_DB_FORMAT = 'Y-m-d H:i:s';
+
+/**
+ * Published at POST format.
+ */
+const PUBLISHED_AT_FORMAT = 'd/m/Y h:i A';
+
+// -----------------------------------------------------------------------------
 // Settings
 
 /**

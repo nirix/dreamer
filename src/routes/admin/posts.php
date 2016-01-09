@@ -28,7 +28,7 @@ if (!Request::seg(2)) {
             'slug'         => Request::$post['slug'],
             'content'      => Request::$post['content'],
             'user_id'      => currentUser()->get('id'),
-            'published_at' => new DateTime(Request::$post['published_at'])
+            'published_at' => DateTime::createFromFormat(PUBLISHED_AT_FORMAT, Request::$post['published_at'])
         ]);
 
         if ($post->validate()) {
@@ -44,7 +44,7 @@ if (!Request::seg(2)) {
             $query->bindValue(':slug', $post['slug']);
             $query->bindValue(':content', $post['content']);
             $query->bindValue(':user_id', $post['user_id'], PDO::PARAM_INT);
-            $query->bindValue(':published_at', $post['published_at']->format('Y-m-d H:i:s'));
+            $query->bindValue(':published_at', $post['published_at']->format(DATETIME_DB_FORMAT));
 
             $query->execute();
 
@@ -76,7 +76,8 @@ if (!Request::seg(2)) {
             'title'        => Request::$post['title'],
             'slug'         => Request::$post['slug'],
             'content'      => Request::$post['content'],
-            'published_at' => new DateTime(Request::$post['published_at'])
+            'is_published' => Request::$post->get('is_published', false),
+            'published_at' => DateTime::createFromFormat(PUBLISHED_AT_FORMAT, Request::$post['published_at'])
         ]);
 
         if ($post->validate()) {
@@ -97,7 +98,8 @@ if (!Request::seg(2)) {
             $query->bindValue(':title', $post['title']);
             $query->bindValue(':slug', $post['slug']);
             $query->bindValue(':content', $post['content']);
-            $query->bindValue(':published_at', $post['published_at']->format('Y-m-d H:i:s'));
+            $query->bindValue(':is_published', $post['is_published']);
+            $query->bindValue(':published_at', $post['published_at']->format(DATETIME_DB_FORMAT));
 
             $query->execute();
 

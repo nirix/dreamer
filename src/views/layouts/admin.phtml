@@ -109,6 +109,12 @@
     </div>
 
     <footer id="footer">
-
+        <div class="container-fluid">
+            <div class="pull-right">
+                <span class="text-muted">
+                    <?=round((microtime(true) - START_TIME), 2); ?>s, <?php echo round((memory_get_peak_usage() - START_MEM) / pow(1024, 2), 3)?>mb
+                </span>
+            </div>
+        </div>
     </footer>
 </html>

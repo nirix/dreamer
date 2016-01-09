@@ -44,7 +44,7 @@ if (!Request::seg(2)) {
             $query->bindValue(':slug', $post['slug']);
             $query->bindValue(':content', $post['content']);
             $query->bindValue(':user_id', $post['user_id'], PDO::PARAM_INT);
-            $query->bindValue(':published_at', $post['published_at']->format('Y-m-d h:i'));
+            $query->bindValue(':published_at', $post['published_at']->format('Y-m-d H:i:s'));
 
             $query->execute();
 

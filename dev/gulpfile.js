@@ -17,11 +17,14 @@ var sassWatchPaths = [
 var beSassy = function() {
     console.log('Being Sassy');
 
-    gulp.src(['./scss/dreamer.scss'])
-        .pipe(sourcemaps.init())
-        .pipe(sass({outputStyle: 'compressed', includePaths: sassPaths}).on('error', sass.logError))
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('../assets/css'));
+    gulp.src([
+        './scss/dreamer.scss',
+        './scss/admin.scss'
+    ])
+    .pipe(sourcemaps.init())
+    .pipe(sass({outputStyle: 'compressed', includePaths: sassPaths}).on('error', sass.logError))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('../assets/css'));
 }
 
 var makeCoffee = function() {

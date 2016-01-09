@@ -138,6 +138,10 @@ function redirect($path)
  */
 function show404()
 {
+    if (Request::seg(0) == 'admin') {
+        return render('admin/404.phtml');
+    }
+
     return render('errors/404.phtml');
 }
 

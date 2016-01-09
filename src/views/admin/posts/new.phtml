@@ -1,0 +1,25 @@
+<main class="new-post container-fluid">
+    <h1 class="page-header"><?=t('new_post')?></h1>
+
+    <form action="">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="form-group">
+                    <label for="title" class="control-label"><?=t('title')?></label>
+                    <input type="text" name="title" id="title" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="content" class="control-label"><?=t('content')?></label>
+                    <textarea name="content" id="content" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="published_at" class="control-label"><?=t('publish_date')?></label>
+                    <input type="text" name="published_at[date]" class="form-control date-picker">
+                </div>
+            </div>
+        </div>
+    </form>
+</main>

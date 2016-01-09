@@ -6,8 +6,14 @@
  * Licensed under the BSD 3-Clause license.
  */
 
-$page = db()->prepare('SELECT id, name, slug, content FROM '.PREFIX.'pages WHERE slug = ? LIMIT 1');
-$page->bindValue(1, Request::$properties['slug']);
-$page->execute();
+$query = db()->prepare('SELECT id, name, slug, content FROM '.PREFIX.'pages WHERE slug = ? LIMIT 1');
+$query->bindValue(1, Request::$properties['slug']);
+$query->execute();
 
-return render('pages/show.phtml', ['page' => $page->fetch()]);
+$page = $query->fetch();
+
+if (!$page) {
+    return show404();
+}
+
+return render('pages/show.phtml', ['page' => $page]);

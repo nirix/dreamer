@@ -40,8 +40,6 @@ class Kernel extends AppKernel
 
     public function __construct()
     {
-        global $language;
-
         session_start();
 
         parent::__construct();
@@ -63,7 +61,7 @@ class Kernel extends AppKernel
         define('PREFIX', $dbConfig['prefix']);
         unset($dbConfig);
 
-        $language = new EnglishAu;
+        $GLOBALS['language'] = new EnglishAu;
 
         require __DIR__ . '/common.php';
     }

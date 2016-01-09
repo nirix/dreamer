@@ -47,8 +47,7 @@ function setting($setting)
  */
 function t($string, array $args = [])
 {
-    global $language;
-    return $language->translate($string, $args);
+    return $GLOBALS['language']->translate($string, $args);
 }
 
 // -----------------------------------------------------------------------------

@@ -3,15 +3,12 @@ var gulp       = require('gulp')
     sass       = require('gulp-sass'),
     coffee     = require('gulp-coffee'),
     concat     = require('gulp-concat'),
+    uglify     = require('gulp-uglify'),
     sourcemaps = require('gulp-sourcemaps');
 
 var sassPaths = [
-    'node_modules/bootstrap-sass/assets/stylesheets'
-];
-
-var sassWatchPaths = [
-    'scss/*.scss',
-    'scss/*/*.scss'
+    'node_modules/bootstrap-sass/assets/stylesheets',
+    'node_modules/eonasdan-bootstrap/datetimepicker/src/sass'
 ];
 
 var beSassy = function() {
@@ -33,6 +30,8 @@ var makeCoffee = function() {
 
     gulp.src('./coffee/*.coffee')
         .pipe(coffee())
+        .pipe(sourcemaps.write('./'))
+        .pipe(uglify())
         .pipe(gulp.dest('../assets/js'));
 }
 
@@ -45,7 +44,7 @@ gulp.task('compile', function(){
 // Watch for changes
 gulp.task('watch', function(){
     watch('scss/**/*.scss', beSassy);
-    watch('./coffee/**/*.coffee', makeCoffee);
+    watch('coffee/**/*.coffee', makeCoffee);
 
     gulp.start('assets');
 });
@@ -60,9 +59,15 @@ gulp.task('coffee', makeCoffee);
 gulp.task('assets', function() {
     gulp.src([
         'node_modules/jquery/dist/jquery.js',
-        'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js'
+        'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
+        'node_modules/moment/min/moment-with-locales.js',
+        // 'node_modules/moment-timezone/builds/moment-timezone-with-data.js',
+        'node_modules/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js'
     ])
+    .pipe(sourcemaps.init())
+    .pipe(uglify())
     .pipe(concat('js.js'))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('../assets/js'));
 
     gulp.src([

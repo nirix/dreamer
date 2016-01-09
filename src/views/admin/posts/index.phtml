@@ -12,7 +12,7 @@
         <?php foreach ($posts as $post) : ?>
             <tr>
                 <td><a href="<?=baseUrl('/admin/posts/' . $post['id'])?>"><?=$post['title']?></a></td>
-                <td><?=$post['author_name']?></td>
+                <td><?=$post['user_name']?></td>
                 <td><?=$post['created_at']?></td>
                 <td></td>
             </tr>

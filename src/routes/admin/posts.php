@@ -9,7 +9,13 @@
 use Dreamer\Models\Post;
 
 if (!Request::seg(2)) {
-    $posts = db()->query('SELECT * FROM '.PREFIX.'posts ORDER BY published_at DESC')->fetchAll();
+    $posts = db()->query('
+        SELECT p.*, u.name AS user_name FROM '.PREFIX.'posts p
+        LEFT JOIN '.PREFIX.'users u ON p.user_id = u.id
+        ORDER BY published_at DESC
+    ')
+    ->fetchAll();
+
     return renderAdmin('admin/posts/index.phtml', ['posts' => $posts]);
 } elseif (Request::seg(2) == 'new') {
     $post = new Post([

@@ -8,6 +8,7 @@
 
 use Unf\View;
 use Dreamer\Models\Model;
+use Dreamer\Models\User;
 
 // -----------------------------------------------------------------------------
 // Settings
@@ -31,6 +32,34 @@ function setting($setting)
     }
 
     return $settings[$setting];
+}
+
+// -----------------------------------------------------------------------------
+// Users
+
+/**
+ * @return User
+ */
+function currentUser()
+{
+    static $user;
+
+    if (!$user && isset($_COOKIE['dreamer'])) {
+        $query = db()->prepare('SELECT u.*, g.permissions
+            FROM '.PREFIX.'users u
+            LEFT JOIN '.PREFIX.'groups g ON g.id = u.group_id
+            WHERE u.session_hash = ?
+            LIMIT 1');
+
+        $query->bindValue(1, $_COOKIE['dreamer']);
+        $query->execute();
+
+        if ($user = $query->fetch()) {
+            $user = new User($user);
+        }
+    }
+
+    return $user;
 }
 
 // -----------------------------------------------------------------------------

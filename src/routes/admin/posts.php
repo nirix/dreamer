@@ -54,5 +54,8 @@ if (!Request::seg(2)) {
         }
     }
 
-    return renderAdmin('admin/posts/new.phtml', ['post' => $post]);
+    return renderAdmin('admin/posts/form.phtml', [
+        'action' => 'new',
+        'post' => $post
+    ]);
 }

@@ -1,7 +1,7 @@
 <main class="new-post container-fluid">
-    <h1 class="page-header"><?=t('new_post')?></h1>
+    <h1 class="page-header"><?=t($action == 'new' ? 'new_post' : 'edit_post')?></h1>
 
-    <form action="<?=baseUrl('/admin/posts/new')?>" method="post">
+    <form action="<?=baseUrl($action == 'new' ? '/admin/posts/new' : "/admin/posts/{$post['id']}/edit")?>" method="post">
         <?=csrfField()?>
         <div class="row">
             <div class="col-md-9">
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-block btn-primary"><?=t('create_post')?></button>
+                    <button type="submit" class="btn btn-block btn-primary"><?=t($action == 'new' ? 'create_post' : 'save_post')?></button>
                 </div>
             </div>
         </div>

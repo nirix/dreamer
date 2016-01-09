@@ -4,9 +4,108 @@
         <meta charset="UTF-8">
         <title>Dreamer AdminCP</title>
 
+        <link rel="stylesheet" type="text/css" href="<?=baseUrl('/assets/css/common.css')?>">
         <link rel="stylesheet" type="text/css" href="<?=baseUrl('/assets/css/admin.css')?>">
+        <script src="<?=baseUrl('/assets/js/js.js')?>"></script>
     </head>
     <body>
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only"><?=t('toggle_navigation')?></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a href="<?=baseUrl('/admin')?>" class="navbar-brand">Dreamer <?=t('admincp')?></a>
+                </div>
 
+                <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="<?=baseUrl('/')?>"><?=t('view_site')?></a>
+                        </li>
+                        <li class="<?=iif(Request::matches('/admin'), 'active')?>">
+                            <a href="<?=baseUrl('/admin')?>"><?=t('dashboard')?></a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="fa fa-user"></span> <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="<?=baseUrl('/admin/profile')?>"><?=t('profile')?></a></li>
+                                <li class="divider"></li>
+                                <li><a href="<?=baseUrl('/logout')?>"><?=t('logout')?></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </body>
+
+    <div class="col-lg-2">
+        <div id="admin-sidebar">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="<?=baseUrl('/admin/posts')?>"><?=t('posts')?></a>
+                    <a href="#admin-posts-menu" class="collapsed" role="button" data-toggle="collapse" data-parent="#admin-sidebar">
+                        <span class="caret"></span>
+                    </a>
+                </div>
+                <div id="admin-posts-menu" class="panel-collapse collapse <?=iif(Request::matches('/admin/posts(.*)?'), 'in')?>" role="tabpanel">
+                    <ul class="list-group">
+                        <li class="list-group-item-btn">
+                            <a href="<?=baseUrl('/admin/posts/new')?>" class="btn btn-block"><?=t('new_post')?></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="<?=baseUrl('/admin/pages')?>"><?=t('pages')?></a>
+                    <a href="#admin-pages-menu" class="collapsed" role="button" data-toggle="collapse" data-parent="#admin-sidebar">
+                        <span class="caret"></span>
+                    </a>
+                </div>
+                <div id="admin-pages-menu" class="panel-collapse collapse <?=iif(Request::matches('/admin/pages(.*)?'), 'in')?>" role="tabpanel">
+                    <ul class="list-group">
+                        <li class="list-group-item-btn">
+                            <a href="<?=baseUrl('/admin/pages/new')?>" class="btn btn-block"><?=t('new_page')?></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="<?=baseUrl('/admin/users')?>"><?=t('users')?></a>
+                    <a href="#admin-users-menu" class="collapsed" role="button" data-toggle="collapse" data-parent="#admin-sidebar">
+                        <span class="caret"></span>
+                    </a>
+                </div>
+                <div id="admin-users-menu" class="panel-collapse collapse <?=iif(Request::matches('/admin/users(.*)?'), 'in')?>" role="tabpanel">
+                    <ul class="list-group">
+                        <li class="list-group-item-btn">
+                            <a href="#" class="btn btn-block"><?=t('groups')?></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-10">
+        <?=$content?>
+    </div>
+
+    <footer id="footer">
+
+    </footer>
 </html>

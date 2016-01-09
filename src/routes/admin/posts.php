@@ -26,7 +26,25 @@ if (!Request::seg(2)) {
         ]);
 
         if ($post->validate()) {
+            db()->beginTransaction();
 
+            $query = db()->prepare('
+                INSERT INTO '.PREFIX.'posts
+                (title, slug, content, user_id, created_at, published_at)
+                VALUES(:title, :slug, :content, :user_id, NOW(), :published_at)
+            ');
+
+            $query->bindValue(':title', $post['title']);
+            $query->bindValue(':slug', $post['slug']);
+            $query->bindValue(':content', $post['content']);
+            $query->bindValue(':user_id', $post['user_id'], PDO::PARAM_INT);
+            $query->bindValue(':published_at', $post['published_at']->format('Y-m-d h:i'));
+
+            $query->execute();
+
+            db()->commit();
+
+            return redirect('/admin/posts');
         }
     }
 

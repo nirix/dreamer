@@ -54,6 +54,7 @@
 
     <div class="col-lg-2">
         <div id="admin-sidebar">
+        <?php if (currentUser()->hasPermission('manage_posts')) : ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <a href="<?=baseUrl('/admin/posts')?>"><?=t('posts')?></a>
@@ -69,7 +70,9 @@
                     </ul>
                 </div>
             </div>
+        <?php endif ?>
 
+        <?php if (currentUser()->hasPermission('manage_pages')) : ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <a href="<?=baseUrl('/admin/pages')?>"><?=t('pages')?></a>
@@ -85,7 +88,9 @@
                     </ul>
                 </div>
             </div>
+        <?php endif ?>
 
+        <?php if (currentUser()->hasPermission('manage_users')) : ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <a href="<?=baseUrl('/admin/users')?>"><?=t('users')?></a>
@@ -101,6 +106,7 @@
                     </ul>
                 </div>
             </div>
+        <?php endif ?>
         </div>
     </div>
 

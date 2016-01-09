@@ -8,6 +8,10 @@
 
 use Dreamer\Models\Post;
 
+if (!currentUser()->hasPermission('manage_posts')) {
+    return show403();
+}
+
 if (!Request::seg(2)) {
     $posts = db()->query('
         SELECT p.*, u.name AS user_name FROM '.PREFIX.'posts p

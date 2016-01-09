@@ -27,6 +27,28 @@ class EnglishAu extends Translation
         // Forms
         'create_account' => 'Create Account',
 
+        // Admin
+        'admincp'   => 'AdminCP',
+        'view_site' => 'View Site',
+        'dashboard' => 'Dashboard',
+        'profile'   => 'Profile',
+
+        // Posts
+        'posts'        => 'Posts',
+        'new_post'     => 'New Post',
+        'title'        => 'Title',
+        'content'      => 'Content',
+        'published_at' => 'Published at',
+        'publish_date' => 'Publish Date',
+
+        // Pages
+        'pages'    => 'Pages',
+        'new_page' => 'New Page',
+
+        // Users
+        'users'  => 'Users',
+        'groups' => 'Groups',
+
         // Errors
         'errors.validation.required'  => '{field} is required',
         'errors.validation.confirm'   => '{field} doesn\'t match confirmation',

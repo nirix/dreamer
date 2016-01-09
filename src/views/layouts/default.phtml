@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title><?=implode(' / ', [])?></title>
 
+        <link rel="stylesheet" type="text/css" href="<?=baseUrl('/assets/css/common.css')?>">
         <link rel="stylesheet" href="<?=baseUrl('/assets/css/dreamer.css')?>">
         <script src="<?=baseUrl('/assets/js/js.js')?>"></script>
         <!-- <script src="<?=baseUrl('/assets/js/dreamer.js')?>"></script> -->
@@ -13,7 +14,7 @@
             <div id="wrapper">
                 <nav class="navbar navbar-default">
                     <div class="navbar-header">
-                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -29,8 +30,8 @@
                         <?php endforeach ?>
                         </ul>
 
-                        <ul class="nav navbar-nav navbar-right">
                         <?php if (currentUser()) : ?>
+                        <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                     <span class="fa fa-user"></span> <span class="caret"></span>

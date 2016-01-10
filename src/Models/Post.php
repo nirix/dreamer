@@ -20,7 +20,6 @@ class Post extends Model
         'published_at' => ['required']
     ];
 
-
     public function __construct(array $properties = [])
     {
         parent::__construct($properties);

@@ -41,15 +41,11 @@ abstract class Translation
         return $string;
     }
 
-    public function date($format = 'YYYY-MM-dd HH:mm VVVV', $date = null, $fromFormat = null)
+    public function date($format = 'YYYY-MM-dd HH:mm VVVV', $date = null, $fromFormat = 'Y-m-d H:i:s')
     {
         if (!$date) {
             $date = new DateTime;
         } elseif (!($date instanceof DateTime)) {
-            if (!$fromFormat) {
-                $fromFormat = 'Y-m-d H:i:s';
-            }
-
             $date = DateTime::createFromFormat($fromFormat, $date);
         }
 

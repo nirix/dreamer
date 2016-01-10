@@ -1,0 +1,15 @@
+<main class="new-page container-fluid">
+    <h1 class="page-header"><?=t('edit_page')?></h1>
+
+    <form action="<?=baseUrl("/admin/pages/{$page['id']}/edit")?>" method="post">
+        <?=csrfField()?>
+
+        <?=view('admin/pages/_form.phtml', ['page' => $page])?>
+
+        <div class="form-group">
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary"><?=t('save_page')?></button>
+            </div>
+        </div>
+    </form>
+</main>

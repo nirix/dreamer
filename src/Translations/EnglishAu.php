@@ -48,8 +48,11 @@ class EnglishAu extends Translation
         'author'       => 'Author',
 
         // Pages
-        'pages'    => 'Pages',
-        'new_page' => 'New Page',
+        'pages'       => 'Pages',
+        'new_page'    => 'New Page',
+        'edit_page'   => 'Edit Page',
+        'create_page' => 'Create Page',
+        'save_page'   => 'Save Page',
 
         // Users
         'users'  => 'Users',

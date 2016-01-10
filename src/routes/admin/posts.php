@@ -119,4 +119,9 @@ if (!Request::seg(2)) {
         'action' => 'edit',
         'post' => $post
     ]);
+} elseif (Request::seg(3) == 'delete') {
+    $query = db()->prepare('DELETE FROM '.PREFIX.'posts WHERE id = ? LIMIT 1');
+    $query->bindValue(1, Request::$properties['id'], PDO::PARAM_INT);
+    $query->execute();
+    return redirect('/admin/posts');
 }

@@ -16,7 +16,13 @@
                 <td><?=$post['user_name']?></td>
                 <td><span class="fa fa-<?=$post['is_published'] ? 'check' : 'times'?>"></span></td>
                 <td><?=$post['published_at']?></td>
-                <td></td>
+                <td>
+                    <div class="text-right">
+                        <a href="<?=baseUrl("/admin/posts/{$post['id']}/delete")?>" class="btn btn-xs btn-danger">
+                            <span class="fa fa-trash"></span> <span class="sr-only"><?=t('delete')?></span>
+                        </a>
+                    </div>
+                </td>
             </tr>
         <?php endforeach ?>
         </tbody>

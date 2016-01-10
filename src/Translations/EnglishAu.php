@@ -75,6 +75,12 @@ class EnglishAu extends Translation
         'errors.validation.minLength' => '{field} must at least {length} characters long',
         'errors.validation.email'     => '{field} is not a valid email address',
         'errors.validation.unique'    => '{field} is already in use',
-        'errors.invalid_username_or_password' => 'Invalid username and/or password'
+        'errors.invalid_username_or_password' => 'Invalid username and/or password',
+
+        'errors.404.title'   => 'You accidentally the whole page',
+        'errors.404.message' => 'The page you\'re looking for couldn\'t be found',
+
+        'errors.403.title'   => 'This is not the page you\'re looking for',
+        'errors.403.message' => 'You don\'t have permission to access this page'
     ];
 }

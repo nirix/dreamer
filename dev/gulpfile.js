@@ -67,7 +67,7 @@ gulp.task('assets', function() {
     .pipe(sourcemaps.init())
     .pipe(uglify())
     .pipe(concat('js.js'))
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('../assets/js'));
 
     gulp.src([

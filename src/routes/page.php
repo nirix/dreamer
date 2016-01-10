@@ -16,4 +16,6 @@ if (!$page) {
     return show404();
 }
 
+title($page['name']);
+
 return render('pages/show.phtml', ['page' => $page]);

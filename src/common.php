@@ -319,6 +319,24 @@ function errorMessageFor(Model $model, $field)
 // Misc.
 
 /**
+ * Append a title segment, or get the current title array.
+ *
+ * @param string $append
+ *
+ * @return array
+ */
+function title($append = null)
+{
+    static $title = [];
+
+    if ($append) {
+        $title[] = $append;
+    }
+
+    return $title;
+}
+
+/**
  * Generate a random hash.
  *
  * @return string

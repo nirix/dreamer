@@ -64,6 +64,8 @@ class Kernel extends AppKernel
         $GLOBALS['language'] = new EnglishAu;
 
         require __DIR__ . '/common.php';
+
+        title(setting('title'));
     }
 
     protected function loadRoutes()

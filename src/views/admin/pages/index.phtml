@@ -10,7 +10,13 @@
         <?php foreach ($pages as $page) : ?>
             <tr>
                 <td><a href="<?=baseUrl("/admin/pages/{$page['id']}/edit")?>"><?=$page['name']?></a></td>
-                <td></td>
+                <td>
+                    <div class="text-right">
+                        <a href="<?=baseUrl("/admin/pages/{$page['id']}/delete")?>" class="btn btn-xs btn-danger">
+                            <span class="fa fa-trash"></span>
+                        </a>
+                    </div>
+                </td>
             </tr>
         <?php endforeach ?>
         </tbody>

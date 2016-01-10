@@ -94,4 +94,9 @@ if (!Request::seg(2)) {
     }
 
     return renderAdmin('admin/pages/edit.phtml', ['page' => $page]);
+} elseif (Request::seg(3) == 'delete') {
+    $query = db()->prepare('DELETE FROM '.PREFIX.'pages WHERE id = ? LIMIT 1');
+    $query->bindValue(1, Request::$properties['id'], PDO::PARAM_INT);
+    $query->execute();
+    return redirect('/admin/pages');
 }

@@ -58,6 +58,9 @@ class EnglishAu extends Translation
         'users'  => 'Users',
         'groups' => 'Groups',
 
+        // Misc
+        'delete' => 'Delete',
+
         // Errors
         'errors.validation.required'  => '{field} is required',
         'errors.validation.confirm'   => '{field} doesn\'t match confirmation',

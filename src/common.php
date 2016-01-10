@@ -23,6 +23,12 @@ const DATETIME_DB_FORMAT = 'Y-m-d H:i:s';
  */
 const PUBLISHED_AT_FORMAT = 'd/m/Y h:i A';
 
+/**
+ * Date/time format for the Intl extension.
+ */
+const INTL_DATETIME = 'dd/MM/YYYY hh:mma';
+const INTL_PUBLISHED_AT = 'dd/MM/YYYY hh:mm a';
+
 // -----------------------------------------------------------------------------
 // Settings
 
@@ -61,6 +67,11 @@ function setting($setting)
 function t($string, array $args = [])
 {
     return $GLOBALS['language']->translate($string, $args);
+}
+
+function d($format, $date)
+{
+    return $GLOBALS['language']->date($format, $date);
 }
 
 // -----------------------------------------------------------------------------

@@ -8,6 +8,10 @@
 
 namespace Dreamer;
 
+use DateTime;
+use IntlCalendar;
+use IntlDateFormatter;
+
 abstract class Translation
 {
     public static function getName()
@@ -30,6 +34,22 @@ abstract class Translation
         $string = $this->getString($string) ?: $string;
         $string = msgfmt_format_message(static::$locale, $string, $args);
         return $string;
+    }
+
+    public function date($format = 'YYYY-MM-dd HH:mm VVVV', $date = null, $fromFormat = null)
+    {
+        if (!$date) {
+            $date = new DateTime;
+        } elseif (!($date instanceof DateTime)) {
+            if (!$fromFormat) {
+                $fromFormat = 'Y-m-d H:i:s';
+            }
+
+            $date = DateTime::createFromFormat($fromFormat, $date);
+        }
+
+        $from = IntlCalendar::fromDateTime($date);
+        return IntlDateFormatter::formatObject($from, $format, static::$locale);
     }
 
     public static function getString($string)

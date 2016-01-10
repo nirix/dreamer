@@ -15,7 +15,7 @@
                 <td><a href="<?=baseUrl("/admin/posts/{$post['id']}/edit")?>"><?=$post['title']?></a></td>
                 <td><?=$post['user_name']?></td>
                 <td><span class="fa fa-<?=$post['is_published'] ? 'check' : 'times'?>"></span></td>
-                <td><?=$post['published_at']?></td>
+                <td><?=d(INTL_DATETIME, $post['published_at'])?></td>
                 <td>
                     <div class="text-right">
                         <a href="<?=baseUrl("/admin/posts/{$post['id']}/delete")?>" class="btn btn-xs btn-danger">

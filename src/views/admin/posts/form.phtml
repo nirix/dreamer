@@ -46,7 +46,7 @@
 
                 <div class="form-group <?=iif($post->hasError('published_at'), 'has-error')?>">
                     <label for="published_at" class="control-label"><?=t('publish_date')?></label>
-                    <input type="text" name="published_at" class="form-control datetime-picker" value="<?=$post['published_at']->format(PUBLISHED_AT_FORMAT)?>">
+                    <input type="text" name="published_at" class="form-control datetime-picker" value="<?=d(INTL_PUBLISHED_AT, $post['published_at'])?>">
                     <?php if ($post->hasError('published_at')) : ?>
                         <div class="help-block"><?=errorMessageFor($post, 'published_at')?></div>
                     <?php endif ?>

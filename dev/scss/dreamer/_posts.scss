@@ -1,0 +1,14 @@
+
+article.post {
+  margin-bottom: 20px;
+
+  .post-heading h2 {
+    border-bottom: 1px solid $gray-lighter;
+    padding-bottom: 5px;
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

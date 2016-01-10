@@ -1,8 +1,8 @@
-<article class="article">
-    <header class="article-heading">
+<article class="post">
+    <header class="post-heading">
         <h2><a href="<?=baseUrl('/posts/' . $post['slug'])?>"><?=$post['title']?></a></h2>
     </header>
-    <div class="article-content">
+    <div class="post-content">
         <?=markdown($post['content'])?>
     </div>
 </article>

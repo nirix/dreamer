@@ -29,6 +29,11 @@ abstract class Translation
         return static::$strings;
     }
 
+    public static function getString($string)
+    {
+        return isset(static::$strings[$string]) ? static::$strings[$string] : false;
+    }
+
     public function translate($string, $args = [])
     {
         $string = $this->getString($string) ?: $string;
@@ -50,10 +55,5 @@ abstract class Translation
 
         $from = IntlCalendar::fromDateTime($date);
         return IntlDateFormatter::formatObject($from, $format, static::$locale);
-    }
-
-    public static function getString($string)
-    {
-        return isset(static::$strings[$string]) ? static::$strings[$string] : false;
     }
 }

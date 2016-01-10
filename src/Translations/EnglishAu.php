@@ -17,6 +17,8 @@ class EnglishAu extends Translation
     protected static $strings = [
         'login'    => 'Login',
         'register' => 'Register',
+        'logout'   => 'Logout',
+        'toggle_navigation' => 'Toggle Navigation',
 
         // Users
         'name'     => 'Name',

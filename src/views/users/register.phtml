@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title><?=setting('title')?> / Login</title>
+        <title><?=implode(' / ', title())?></title>
         <link rel="stylesheet" href="<?=baseUrl('/assets/css/admin.css')?>">
     </head>
     <body class="register">
@@ -11,10 +11,10 @@
                 <form action="<?=baseUrl('/register')?>" method="post" class="form-register">
                     <?=csrfField()?>
 
-                    <h2 class="form-register-heading"><?=setting('title')?> Registration</h2>
+                    <h2 class="form-register-heading"><?=setting('title')?> <?=t('registration')?></h2>
 
                     <div class="form-group <?=iif($user->hasError('name'), 'has-error')?>">
-                        <label for="name" class="control-label">Name</label>
+                        <label for="name" class="control-label"><?=t('name')?></label>
                         <input type="text" name="name" id="name" class="form-control" value="<?=$user['name']?>" required autofocus>
                         <?php if ($user->hasError('name')) : ?>
                             <div class="help-block"><?=errorMessageFor($user, 'name')?></div>
@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="form-group <?=iif($user->hasError('username'), 'has-error')?>">
-                        <label for="username" class="control-label">Username</label>
+                        <label for="username" class="control-label"><?=t('username')?></label>
                         <input type="text" name="username" id="username" class="form-control" value="<?=$user['username']?>" required>
                         <?php if ($user->hasError('username')) : ?>
                             <div class="help-block"><?=errorMessageFor($user, 'username')?></div>
@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="form-group <?=iif($user->hasError('email'), 'has-error')?>">
-                        <label for="email" class="control-label">Email address</label>
+                        <label for="email" class="control-label"><?=t('email')?></label>
                         <input type="email" name="email" id="email" class="form-control" value="<?=$user['email']?>" required>
                         <?php if ($user->hasError('email')) : ?>
                             <div class="help-block"><?=errorMessageFor($user, 'email')?></div>
@@ -38,15 +38,15 @@
                     </div>
 
                     <div class="form-group password <?=iif($user->hasError('password'), 'has-error')?>">
-                        <label for="password" class="control-label">Password</label>
+                        <label for="password" class="control-label"><?=t('password')?></label>
                         <input type="password" name="password" id="password" class="form-control" required>
-                        <input type="password" name="password_confirm" id="password-confirm" class="form-control" placeholder="Confirm Password" required>
+                        <input type="password" name="password_confirm" id="password-confirm" class="form-control" placeholder="<?=t('confirm_password')?>" required>
                         <?php if ($user->hasError('password')) : ?>
                             <div class="help-block"><?=errorMessageFor($user, 'password')?></div>
                         <?php endif ?>
                     </div>
 
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit"><?=t('create_account')?></button>
                 </form>
             </div>
         </div>

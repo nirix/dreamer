@@ -20,6 +20,12 @@ class EnglishAu extends Translation
         'logout'   => 'Logout',
         'toggle_navigation' => 'Toggle Navigation',
 
+        // Sessions and Registration
+        'please_login'     => 'Please login',
+        'registration'     => 'Registration',
+        'confirm_password' => 'Confirm Password',
+        'create_account'   => 'Create Account',
+
         // Users
         'name'     => 'Name',
         'username' => 'Username',
@@ -69,5 +75,6 @@ class EnglishAu extends Translation
         'errors.validation.minLength' => '{field} must at least {length} characters long',
         'errors.validation.email'     => '{field} is not a valid email address',
         'errors.validation.unique'    => '{field} is already in use',
+        'errors.invalid_username_or_password' => 'Invalid username and/or password'
     ];
 }

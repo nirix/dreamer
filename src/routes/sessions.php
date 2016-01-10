@@ -10,6 +10,8 @@
 if (Request::seg(0) == 'login') {
     $error = false;
 
+    title(t('login'));
+
     if (Request::$method == 'POST') {
         $query = db()->prepare('SELECT id, password, session_hash FROM '.PREFIX.'users WHERE username = ? LIMIT 1');
         $query->bindValue(1, Request::$post['username']);

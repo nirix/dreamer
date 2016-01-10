@@ -10,6 +10,7 @@ $posts = db()->query('
     SELECT id, title, slug, content
     FROM '.PREFIX.'posts
     WHERE is_published = 1
+    AND published_at < NOW()
     ORDER BY published_at DESC
 ');
 

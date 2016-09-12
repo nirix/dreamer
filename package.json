@@ -1,0 +1,27 @@
+{
+  "name": "dreamer",
+  "version": "0.0.0",
+  "description": "A lightweight blog built in PHP and React.js",
+  "keywords": [
+    "lightweight",
+    "blog",
+    "reactjs"
+  ],
+  "author": "Jack P.",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "bootstrap-sass": "^3.3.7",
+    "css-loader": "^0.25.0",
+    "jquery": "^3.1.0",
+    "node-sass": "^3.9.3",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "react-router": "^2.8.0",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2"
+  }
+}

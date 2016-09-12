@@ -1,36 +1,28 @@
 {
     "name": "nirix/dreamer",
-    "description": "A lightweight blogging platform.",
+    "description": "A lightweight blog built in PHP and React.js",
     "type": "project",
-    "license": "BSD-3-Clause",
+    "license": "Apache-2.0",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "authors": [
         {
-            "name": "Nirix",
-            "email": "nrx@nirix.net"
+            "name": "Jack Polgar",
+            "email": "jack@polgar.id.au"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Dreamer\\": "src/"
+            "Dreamer\\": "src/Dreamer/"
         }
     },
     "require": {
-        "php": ">=5.5.9",
-        "ext-intl": ">=1.1.0",
-        "nirix/unframework": "dev-master",
-        "erusev/parsedown-extra": "^0.7.1"
+        "avalon/core": "^2.0@dev",
+        "avalon/templating": "^2.0@dev",
+        "avalon/database": "2.0.*",
+        "avalon/language": "2.0.*"
     },
     "require-dev": {
-        "filp/whoops": "^2.0"
-    },
-    "scripts": {
-        "setup-dev": [
-            "cd dev && npm install"
-        ],
-        "compile": [
-            "cd dev && gulp compile"
-        ]
+        "filp/whoops": "^2.1"
     }
 }

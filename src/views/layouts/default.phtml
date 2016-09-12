@@ -1,65 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title><?=implode(' / ', title())?></title>
+	<head>
+		<meta charset="UTF-8">
+		<title>Dreamer</title>
+	</head>
+	<body>
+		<div class="container">
+			<div id="wrapper">
+				<nav class="navbar navbar-default">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only"><?=t('toggle_navigation')?></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a href="<?=Request::baseUrl()?>" class="navbar-brand"><?=setting('title')?></a>
+					</div>
 
-        <link rel="stylesheet" type="text/css" href="<?=baseUrl('/assets/css/common.css')?>">
-        <link rel="stylesheet" href="<?=baseUrl('/assets/css/dreamer.css')?>">
-        <script src="<?=baseUrl('/assets/js/js.js')?>"></script>
-        <!-- <script src="<?=baseUrl('/assets/js/dreamer.js')?>"></script> -->
+					<div class="collapse navbar-collapse" id="navbar-collapse-1">
+						<ul class="nav navbar-nav">
 
-        <?=view('layouts/_js.phtml')?>
-    </head>
-    <body>
-        <div class="container">
-            <div id="wrapper">
-                <nav class="navbar navbar-default">
-                    <div class="navbar-header">
-                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only"><?=t('toggle_navigation')?></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                      </button>
-                      <a href="<?=baseUrl()?>" class="navbar-brand"><?=setting('title')?></a>
-                    </div>
+						</ul>
+					</div>
+				</nav>
+				<main>
+					<?=$this->getSection('content')?>
+				</main>
+				<footer id="footer">
+					<div class="pull-right">
+						Powered by <a href="https://nirix.github.io/dreamer">Dreamer</a>
+					</div>
 
-                    <div class="collapse navbar-collapse" id="navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                        <?php foreach (getPages() as $page) : ?>
-                            <li class="<?=iif(Request::matches("/{$page['slug']}"), 'active')?>"><a href="<?=baseUrl($page['slug'])?>"><?=$page['name']?></a></li>
-                        <?php endforeach ?>
-                        </ul>
-
-                        <?php if (currentUser()) : ?>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <span class="fa fa-user"></span> <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <?php if (currentUser()->isAdmin()) : ?>
-                                        <li><a href="<?=baseUrl('/admin')?>"><?=t('admincp')?></a></li>
-                                        <li class="divider"></li>
-                                    <?php endif ?>
-                                    <li><a href="<?=baseUrl('/logout')?>"><?=t('logout')?></a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <?php endif ?>
-                    </div>
-                </nav>
-                <?=$content?>
-                <footer id="footer">
-                    <div class="pull-right">
-                        Powered by <a href="https://nirix.github.io/dreamer">Dreamer</a>
-                    </div>
-
-                    &copy; <?=date("Y")?>
-                </footer>
-            </div>
-        </div>
-    </body>
+					&copy; <?=date("Y")?>
+				</footer>
+			</div>
+		</div>
+		<script src="<?=Request::baseUrl('assets/dreamer.js')?>"></script>
+	</body>
 </html>

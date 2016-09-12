@@ -1,24 +1,17 @@
 # Dreamer
 
-Dreamer is a lightweight blogging platform written in PHP and powered by
-[Unframework](https://nirix.github.io/unframework) and MariaDB (MySQL).
-
-## Requirements
-
-- [PHP](https://secure.php.net) 5.5+
-  - [Mcrypt](https://secure.php.net/mcrypt)
-  - [Intl](https://secure.php.net/intl)
-- [MariaDB](https://mariadb.org) / MySQL
-- Modern browser
+Dreamer is a lightweight blog built in PHP with a React.js admin panel.
 
 ## Installation
 
 ### From repository
 
-- Install dependencies: `composer install`
-- Setup development directory: `composer run setup-dev`
-- Compile CSS, JavaScript and Font assets: `composer run compile`
+1. Install dependencies: `npm install && composer install`
+2. Compile assets with Webpack: `webpack`
+3. Setup your server to use the `public` directory
+   - Alternatively, use `mod_rewrite` to route requests to it.
+4. Open in your browser and follow install steps.
 
 ## License
 
-Dreamer is licensed under the BSD 3-Clause license.
+Dreamer is made available under the Apache-2.0 license.

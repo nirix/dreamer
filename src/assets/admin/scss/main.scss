@@ -1,0 +1,13 @@
+@import "bootstrap/variables";
+
+$body-bg: darken(white, 1%);
+
+@import 'bootstrap.custom';
+
+.page-header {
+  margin-top: 0;
+}
+
+.form-actions {
+  text-align: center;
+}

@@ -1,0 +1,75 @@
+@import "bootstrap/variables";
+
+// Body
+$body-colour: #fff;
+$body-bg: darken($brand-primary, 30%);
+
+$border-radius: 5px;
+
+// Container
+$container-desktop: 940px;
+$container-large-desktop: $container-desktop;
+$container-large: $container-desktop;
+$container-lg: $container-desktop;
+
+// Wrapper
+$wrapper-bg-colour: darken($brand-primary, 15%);
+$wrapper-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
+// Navbar default
+$navbar-default-bg: transparent;
+$navbar-default-border: 0;
+$navbar-margin-bottom: 0;
+$navbar-default-color: #fff;
+
+$navbar-default-link-color: $navbar-default-color;
+$navbar-default-link-active-color: $navbar-default-color;
+$navbar-default-link-active-bg: darken($wrapper-bg-colour, 5%);
+$navbar-default-link-hover-color: $navbar-default-link-color;
+$navbar-default-link-hover-bg: $navbar-default-link-active-bg;
+
+$navbar-default-brand-color: $navbar-default-link-color;
+$navbar-default-brand-hover-color: $navbar-default-brand-color;
+
+// Main
+$main-border-radius: $border-radius;
+
+// Headings
+$font-size-h1: floor($font-size-base * 2);
+
+@import 'bootstrap.custom';
+
+/*!
+ * Dreamer
+ * Copyright (c) 2010-2016 Jack P.
+ *
+ * Licensed under the BSD 3-clause license.
+ */
+
+#wrapper {
+  background: $wrapper-bg-colour;
+  border-radius: $main-border-radius;
+  box-shadow: $wrapper-box-shadow;
+}
+
+main {
+    padding: 10px;
+    background: #fff;
+    border-radius: $main-border-radius;
+}
+
+.page-header {
+  margin-top: 0;
+}
+
+#footer {
+    color: $body-colour;
+    padding: 5px 10px;
+
+    a {
+      color: #fff;
+    }
+}
+
+@import 'header.scss';
+@import 'posts.scss';

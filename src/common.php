@@ -3,10 +3,12 @@
  * Dreamer
  * Copyright (c) 2010-2016 Nirix
  *
- * Licensed under the BSD 3-Clause license.
+ * Licensed under the Apache-2.0 license.
  */
 
-use Unf\View;
+use Avalon\Language;
+use Avalon\Templating\View;
+use Avalon\Database\ConnectionManager;
 use Dreamer\Models\Model;
 use Dreamer\Models\User;
 
@@ -44,9 +46,9 @@ function setting($setting)
     static $settings;
 
     if (!$settings) {
-        $query = db()->query('SELECT setting, value FROM '.PREFIX.'settings');
+        $query = db()->query('SELECT name, value FROM '.PREFIX.'settings');
         foreach ($query->fetchAll() as $row) {
-            $settings[$row['setting']] = $row['value'];
+            $settings[$row['name']] = $row['value'];
         }
     }
 
@@ -66,12 +68,12 @@ function setting($setting)
  */
 function t($string, array $args = [])
 {
-    return $GLOBALS['language']->translate($string, $args);
+    return Language::translate($string, $args);
 }
 
 function d($format, $date)
 {
-    return $GLOBALS['language']->date($format, $date);
+    return Language::date($format, $date);
 }
 
 // -----------------------------------------------------------------------------
@@ -125,7 +127,7 @@ function getPages()
  */
 function db()
 {
-    return $GLOBALS['db'];
+    return ConnectionManager::getConnection();
 }
 
 // -----------------------------------------------------------------------------

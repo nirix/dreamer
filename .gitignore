@@ -1,7 +1,7 @@
 # Dreamer
-/assets
+/public/assets
 /config/config.php
-/dev/node_modules
+/node_modules
 
 # Composer
 /vendor

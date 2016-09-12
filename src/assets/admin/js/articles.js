@@ -1,10 +1,29 @@
 import React from 'react';
+import SessionStore from './session-store';
 
 class Articles extends React.Component {
-    componentWillMount() {
-        if (!this.props.currentUser) {
+    constructor() {
+        super();
+
+        this.goAway = this.goAway.bind(this);
+    }
+
+    goAway() {
+        if (!SessionStore.getCurrentUser()) {
             this.context.router.push('/admin/login');
         }
+    }
+
+    componentWillMount() {
+        if (!this.props.currentUser) {
+            this.goAway();
+        }
+
+        SessionStore.addLogoutListener(this.goAway);
+    }
+
+    componentWillUnmount() {
+        SessionStore.removeLogoutListener(this.goAway);
     }
 
     render() {

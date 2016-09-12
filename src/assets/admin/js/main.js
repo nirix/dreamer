@@ -6,6 +6,7 @@ import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {Header} from './layout';
 import {Articles} from './articles';
 import {Login, Register} from './users';
+import SessionStore from './session-store';
 
 const appHistory = useRouterHistory(createBrowserHistory)({
     basename: window.baseUrl,
@@ -19,7 +20,16 @@ class Dreamer extends React.Component {
         this.state = {
             currentUser: null
         }
+
+        this.setCurrentUser = this.setCurrentUser.bind(this);
+
+        SessionStore.addChangeListener(this.setCurrentUser);
     }
+
+    setCurrentUser() {
+        this.setState({ currentUser: SessionStore.getCurrentUser() });
+    }
+
     render() {
         return (
             <div>

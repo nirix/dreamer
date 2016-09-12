@@ -15,9 +15,10 @@ class Sessions extends Controller
             return $this->respondTo(function ($format) use ($user) {
                 if (Request::isXhr()) {
                     return $this->jsonResponse([
-                        'id' => $user->id,
-                        'username' => $user->username
-                    ]);
+                            'id' => $user->id,
+                            'username' => $user->username
+                        ])
+                        ->addCookie('dreamer', $user->session_hash, time() + (7 * 24 * 60 * 60), '/');
                 }
             });
         } else {

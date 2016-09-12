@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import SessionStore from './session-store';
 
 class Header extends React.Component {
     render() {
@@ -24,11 +25,25 @@ class Header extends React.Component {
 }
 
 class UserNav extends React.Component {
+    constructor() {
+        super();
+
+        this.logout = this.logout.bind(this);
+    }
+
+    logout(event) {
+        event.preventDefault();
+        SessionStore.logout();
+        this.context.router.push('/admin/login');
+    }
+
     render() {
         if (this.props.currentUser) {
             return (
                 <ul className="nav navbar-nav">
-
+                    <li>
+                        <a href="#" onClick={this.logout}>Logout</a>
+                    </li>
                 </ul>
             );
         } else {
@@ -40,6 +55,10 @@ class UserNav extends React.Component {
             );
         }
     }
+}
+
+UserNav.contextTypes = {
+    router: React.PropTypes.object.isRequired
 }
 
 class NavLink extends React.Component {

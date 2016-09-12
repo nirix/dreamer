@@ -1,5 +1,7 @@
 import React from 'react';
 import {ErrorsAlert, FormErrorMessage} from './layout';
+import AppDispatcher from './app-dispatcher';
+import SessionStore from './session-store';
 
 class Login extends React.Component {
     constructor() {
@@ -28,6 +30,7 @@ class Login extends React.Component {
             },
             cache: false,
             success: function(data){
+                SessionStore.login(data);
                 this.context.router.push('/admin');
             }.bind(this),
             error: function(xhr, status, error){

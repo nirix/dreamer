@@ -34,7 +34,6 @@ class UserNav extends React.Component {
     logout(event) {
         event.preventDefault();
         SessionStore.logout();
-        this.context.router.push('/admin/login');
     }
 
     render() {

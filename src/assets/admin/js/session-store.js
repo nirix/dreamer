@@ -47,8 +47,23 @@ class SessionStore extends EventEmitter {
     }
 
     logout() {
-        this.setCurrentUser(null);
-        this.emit(EVENTS.loggedout);
+        $.ajax({
+            url: window.baseUrl + '/logout',
+            method: 'delete',
+            dataType: 'json',
+            cache: false,
+            success: function(data){
+                this.setCurrentUser(null);
+                this.emit(EVENTS.loggedout);
+            }.bind(this),
+            error: function(xhr, status, error){
+                console.error('error logging out', error.toString());
+
+                // Log user out anyway?
+                this.setCurrentUser(null);
+                this.emit(EVENTS.loggedout);
+            }.bind(this)
+        });
     }
 
     setCurrentUser(user) {

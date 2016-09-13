@@ -15,7 +15,7 @@ class Articles extends React.Component {
     }
 
     componentWillMount() {
-        if (!this.props.currentUser) {
+        if (this.props.currentUser === false) {
             this.goAway();
         }
 

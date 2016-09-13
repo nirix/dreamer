@@ -31,4 +31,19 @@ class Sessions extends Controller
             });
         }
     }
+
+    public function destroyAction()
+    {
+        return $this->respondTo(function ($format) {
+            if (Request::isXhr()) {
+                $resp = $this->jsonResponse([
+                    'success' => 'You are now logged out'
+                ]);
+            } else {
+                $resp = $this->redirectTo('root');
+            }
+
+            return $resp->addCookie('dreamer', '', time(), '/');
+        });
+    }
 }

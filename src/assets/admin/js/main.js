@@ -22,15 +22,30 @@ class Dreamer extends React.Component {
         }
 
         this.setCurrentUser = this.setCurrentUser.bind(this);
+        this.goToLogin = this.goToLogin.bind(this);
+    }
 
     componentWillMount() {
         SessionStore.addChangeListener(this.setCurrentUser);
+
+        // Take user to login form when they logout (or there is no active session)
+        SessionStore.addLogoutListener(this.goToLogin);
+
         SessionStore.fetchSession();
     }
+
+    componentWillUnmount() {
+        SessionStore.removeChangeListener(this.setCurrentUser);
+        SessionStore.removeLogoutListener(this.goToLogin);
     }
 
     setCurrentUser() {
         this.setState({ currentUser: SessionStore.getCurrentUser() });
+    }
+
+    goToLogin() {
+        this.setState({ currentUser: false });
+        this.context.router.push('/admin/login');
     }
 
     render() {
@@ -48,6 +63,10 @@ class Dreamer extends React.Component {
             </div>
         );
     }
+}
+
+Dreamer.contextTypes = {
+    router: React.PropTypes.object.isRequired
 }
 
 render((

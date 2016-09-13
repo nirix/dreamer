@@ -22,6 +22,25 @@ class SessionStore extends EventEmitter {
         });
     }
 
+    fetchSession() {
+        $.ajax({
+            url: window.baseUrl + '/admin/current-user',
+            dataType: 'json',
+            cache: false,
+            success: function(data){
+                this.login(data);
+            }.bind(this),
+            error: function(xhr, status, error){
+                if (xhr.status == 404) {
+                    console.error('no user session');
+                    this.emit(EVENTS.loggedout);
+                } else {
+                    console.error('error fetching current user data', error.toString());
+                }
+            }.bind(this)
+        });
+    }
+
     login(user) {
         this.setCurrentUser(user);
         this.emit(EVENTS.loggedin);

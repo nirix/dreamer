@@ -23,7 +23,10 @@ class Dreamer extends React.Component {
 
         this.setCurrentUser = this.setCurrentUser.bind(this);
 
+    componentWillMount() {
         SessionStore.addChangeListener(this.setCurrentUser);
+        SessionStore.fetchSession();
+    }
     }
 
     setCurrentUser() {

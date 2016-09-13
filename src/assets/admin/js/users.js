@@ -25,8 +25,8 @@ class Login extends React.Component {
             method: 'post',
             dataType: 'json',
             data: {
-                username: event.target.getElementsByTagName('input')[0].value,
-                password: event.target.getElementsByTagName('input')[1].value
+                username: this.refs.username.value,
+                password: this.refs.password.value
             },
             cache: false,
             success: function(data){
@@ -70,13 +70,13 @@ class Login extends React.Component {
                             <div className="form-group">
                                 <label htmlFor="username" className="control-label col-sm-3">Username</label>
                                 <div className="col-sm-9">
-                                    <input type="text" name="username" id="username" className="form-control" />
+                                    <input type="text" ref="username" name="username" id="username" className="form-control" />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password" className="control-label col-sm-3">Password</label>
                                 <div className="col-sm-9">
-                                    <input type="password" name="password" id="password" className="form-control" />
+                                    <input type="password" ref="password" name="password" id="password" className="form-control" />
                                 </div>
                             </div>
                             <div className="form-actions">
